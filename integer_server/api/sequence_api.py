@@ -22,6 +22,6 @@ def get_sequence(sequence_name, element_number):
     :param element_number: int indicating num of elements to return
     :return: json of list of first n elements
     """
-    element = SequenceService(sequence_name).get_sequence_list(element_number)
-    return jsonify(element.to_dict())
+    sequence_list = SequenceService(sequence_name).get_sequence_list(element_number)
+    return jsonify(sequence_list.to_dict())
 

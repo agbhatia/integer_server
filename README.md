@@ -30,8 +30,8 @@ $ python server.py
 
 The urls supported are:
 
-* /sequences/{sequence_name}/{n} (should return the nth term of sequence_name)
-* /sequences/{sequence_name}/first/{n} (should return the first n terms, in order, of sequence_name)
+* `/sequences/{sequence_name}/{n}` (should return the nth term of sequence_name)
+* `/sequences/{sequence_name}/first/{n}` (should return the first n terms, in order, of sequence_name)
 
 The values that can be passed into `sequence_name` are:
 
@@ -80,7 +80,7 @@ The values that can be passed into `sequence_name` are:
 
 ### Testing
 
-Unit tests were writting using `unittest`. You can find the tests at `integer_server/calculators/test_calculators.py`.
+Unit tests were written using `unittest`. You can find the tests at `integer_server/calculators/test_calculators.py`.
 The tests define a hard coded sequence of fibonacci and happy numbers sequences and make sure that the calculator functions match those hard coded lists. 
 
 ### Code Organization and Architecture
