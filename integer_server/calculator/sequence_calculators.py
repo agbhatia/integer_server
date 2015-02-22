@@ -1,4 +1,5 @@
 from integer_server.exceptions import *
+from integer_server import constants as c
 
 class CalculatorFactory(object):
     """Takes in the sequence name and spits out the corresponding calculator"""
@@ -6,11 +7,11 @@ class CalculatorFactory(object):
     def get_calculator(self, sequence_name):
         """
         :param sequence_name: string of the sequence name
-        :return: BaseCalculator obj that correspondong to sequence name
+        :return: BaseCalculator obj that corresponds to sequence name
         """
-        if (sequence_name == "fibonacci"):
+        if (sequence_name == c.FIB_SEQ):
             return FibonacciCalculator()
-        elif (sequence_name == "happy_numbers"):
+        elif (sequence_name == c.HAPPY_NUM_SEQ):
             return HappyNumberCalculator()
         else:
             # This case shouldn't really be hit since we validate the sequence

@@ -1,9 +1,10 @@
 from integer_server.exceptions import InvalidSequenceException
 from functools import wraps
+from integer_server import constants as c
 
 # set of valid sequences.
 # use a set to make lookup constant time
-valid_sequences = {"fibonacci", "happy_numbers"}
+valid_sequences = {c.FIB_SEQ, c.HAPPY_NUM_SEQ}
 
 # Function to check if sequence is valid
 # create own function in case other parts of code might want to use this
