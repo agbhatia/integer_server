@@ -79,24 +79,37 @@ class FibonacciCalculator(BaseCalculator):
 
 class HappyNumberCalculator(BaseCalculator):
     """Class to handle happy number calculations"""
-
     def __init__(self):
         # We keep a reference to the squares of all the numbers from 0-9
         # because we only square each digit. Saves time from constantly
         # calculating the squares.
         self.squared_dict = {i:i**2 for i in xrange(10)}
 
+        # We memoize all the unhappy and happy numbers so we aren't performing duplicate
+        # calculations. There is a significant time improvement with this method (I profiled
+        # the times).
+        self.happy_number_set = set()
+        self.unhappy_number_set = set()
 
-    def is_happy(self, n):
+    def is_happy_helper(self, n):
         """
         :param n: int of value we are checking
-        :return: bool of whether n is happy or not
+        :return (bool, set): bool to indicate if n is happy, and set to capture all the values that led to the result
         """
         previous_values = set()
+
         while (n > 1) and (n not in previous_values):
+            # First check if n is in the happy number set or not. If it is in one
+            # of the lists then we immediately know if n is happy or not
+            if n in self.happy_number_set:
+                return (True, previous_values)
+            elif n in self.unhappy_number_set:
+                return (False, previous_values)
+
             previous_values.add(n)
             n = sum([self.squared_dict[int(ch)] for ch in str(n)])
-        return n == 1
+
+        return (n == 1, previous_values)
 
     def happy_number_generator(self, n):
         """Generator to return the next happy number
@@ -109,9 +122,15 @@ class HappyNumberCalculator(BaseCalculator):
         count = 0
         while (count < n):
             i += 1
-            if (self.is_happy(i)):
+            (is_happy, value_set) = self.is_happy_helper(i)
+            if (is_happy):
                 count += 1
                 yield i
+                # Add the value set into our list of happy numbers
+                self.happy_number_set |= value_set
+            else:
+                # Add the value set into our list of unhappy numbers
+                self.unhappy_number_set |= value_set
 
     def get_nth_element(self, n):
         """Return nth element of happy num sequence

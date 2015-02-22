@@ -28,7 +28,7 @@ class HappyNumberTest(unittest.TestCase):
         """Define a list of the known happy numbers seq up to a certain point. This should
         ""be good enough to test that it works (can make the list longer if needed).
         """
-        self.happy_numbers = [1, 7, 10, 13, 19, 23, 28, 31, 32, 44, 49, 68, 70, 79]
+        self.happy_numbers = [1, 7, 10, 13, 19, 23, 28, 31, 32, 44, 49, 68, 70, 79, 82, 86, 91, 94, 97, 100, 103, 109, 129, 130, 133, 139, 167, 176, 188, 190]
         self.calculator = HappyNumberCalculator()
 
     def test_happy_number_calculator_element_zero(self):
