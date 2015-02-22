@@ -87,20 +87,23 @@ class HappyNumberCalculator(BaseCalculator):
 
         # We memoize all the unhappy and happy numbers so we aren't performing duplicate
         # calculations. There is a significant time improvement with this method (I profiled
-        # the times).
+        # the times). Memoizing does increase performance at the cost of using up more memory,
+        # but the amount of extra consumed isn't very expensive.
         self.happy_number_set = set()
         self.unhappy_number_set = set()
 
     def is_happy_helper(self, n):
-        """
+        """ This function does 2 important things. 1: determines if n is a happy number or not
+        2: It capture the set of values that led to the result so we can memoize those numbers
+        to greatly speed up future calculations.
         :param n: int of value we are checking
         :return (bool, set): bool to indicate if n is happy, and set to capture all the values that led to the result
         """
         previous_values = set()
 
         while (n > 1) and (n not in previous_values):
-            # First check if n is in the happy number set or not. If it is in one
-            # of the lists then we immediately know if n is happy or not
+            # First check if n is in the happy or unhappy number set or not. If it is in one
+            # of the lists then we immediately know if n is happy or not.
             if n in self.happy_number_set:
                 return (True, previous_values)
             elif n in self.unhappy_number_set:
@@ -120,6 +123,9 @@ class HappyNumberCalculator(BaseCalculator):
             return
         i = 0
         count = 0
+
+        # It is important to track the values returned by the helper function
+        # so that we can leverage them to speed up future calculations.
         while (count < n):
             i += 1
             (is_happy, value_set) = self.is_happy_helper(i)
