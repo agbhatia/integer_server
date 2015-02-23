@@ -52,11 +52,10 @@ class FibonacciCalculator(BaseCalculator):
 
         (x, y) = (0, 1)
 
-        yield x
-
-        for i in xrange(n):
-            (x, y) = (y, x+y)
+        # Because fib starts at index 0 we need to go all the way to n+1
+        for i in xrange(n+1):
             yield x
+            (x, y) = (y, x+y)
 
     def get_nth_element(self, n):
         """Retrieve nth element of fib sequence

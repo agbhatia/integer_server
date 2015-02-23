@@ -80,8 +80,14 @@ The values that can be passed into `sequence_name` are:
 
 ### Testing
 
-Unit tests were written using `unittest`. You can find the tests at `integer_server/calculators/test_calculators.py`.
-The tests define a hard coded sequence of fibonacci and happy numbers sequences and make sure that the calculator functions match those hard coded lists. 
+Unit tests were written using `unittest`. The tests are simply for verifying that the calculators spit out the correct
+values.
+
+The tests define a hard coded sequence of fibonacci and happy numbers sequences and make sure that the calculator functions match those hard coded lists.
+
+To run the tests simply run this command from the project root:
+
+`python -m integer_server.tests.test_calculators`
 
 ### Code Organization and Architecture
 

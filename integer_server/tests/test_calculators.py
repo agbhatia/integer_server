@@ -1,6 +1,7 @@
 import unittest
 
-from integer_server.calculator.sequence_calculators import *
+from integer_server.calculator.sequence_calculators import FibonacciCalculator, HappyNumberCalculator
+from integer_server.exceptions import InvalidElementException
 
 
 class FibonacciCalculatorTest(unittest.TestCase):
